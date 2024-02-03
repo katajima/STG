@@ -33,18 +33,17 @@ public:
 	void Draw();
 
 private:
-
+	//位置
 	VectorFloat2 pos_[max_bullet];
-
+	//速度
 	VectorFloat2 speed_[max_bullet];
-
+	//半径
 	float radius_;
-
-
+	//フラグ
 	int isAlive_[max_bullet];
-
+	//色
 	unsigned int color_;
-
+	//画像
 	int image_bullet = Novice::LoadTexture("./image/bullet.png");
 };
 

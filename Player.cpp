@@ -65,7 +65,7 @@ void Player_Class::Update(char* keys, char* preKeys)
 			if (weapons_->GetIsAlive(i) == 0) {
 				weapons_->SetIsAlive(1, i);
 				weapons_->SetPos(pos_.x, pos_.y, i);
-				weapons_->SetSpeed(-4, -4, i);
+				weapons_->SetSpeed(4, -4, i);
 				if (weapons_->GetIsAlive(i) == 1) {
 					break;
 				}

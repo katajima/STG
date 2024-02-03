@@ -32,17 +32,19 @@ public:
 	void Draw();
 
 private:
-
+	//位置
 	VectorFloat2 pos_;
-
+	//速度
 	VectorFloat2 speed_;
-
+	//半径
 	float radius_;
-
+	//HP
 	int hp_;
-
+	//フラグ
 	int isAlive_;
-
+	//方向
+	int direction_;
+	//画像
 	int image_player = Novice::LoadTexture("./image/player.png");
 };
 

@@ -38,10 +38,9 @@ private:
 	int hp_;
 	//フラグ
 	int isAlive_;
-
-	//　
+	//クールタイム
 	int count_bullet;
-
+	//画像
 	int image_enemy = Novice::LoadTexture("./image/enemy.png");
 };
 
