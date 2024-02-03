@@ -74,7 +74,7 @@ void Player_Class::Update(char* keys, char* preKeys)
 			if (weapons_->GetIsAlive(i) == 0) {//フラグがfalseなら
 				weapons_->SetIsAlive(1, i);//フラグをtrueに
 				weapons_->SetPos(pos_.x, pos_.y, i);//位置をプレイヤーに
-				weapons_->SetSpeed(4, -4, i);//速度を設定
+				weapons_->SetSpeed(4 * float(direction_), -4, i);//速度を設定
 				if (weapons_->GetIsAlive(i) == 1) {//フラグがtrueなら
 					break;
 				}
@@ -130,5 +130,7 @@ void Player_Class::Draw()
 	Novice::DrawSprite((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_, image_player, 1, 1, 0.0f, WHITE);
 	//弾
 	weapons_->Draw();
+
+	Novice::DrawBox((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_-20,hp_,10, 0.0f, GREEN,kFillModeSolid);
 
 }

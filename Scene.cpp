@@ -31,14 +31,14 @@ void GameScene_Class::Update(char* keys, char* preKeys)
 
 			player->SetPos(500, 400);
 			player->SetIsAlive(1);
-			player->SetInitializationHp(20);
+			player->SetInitializationHp(50);
 			for (int i = 0; i < max_bullet; i++) {
 				player->weapons_->SetIsAlive(0, i);
 				player->weapons_->SetPos(-100, -100, i);
 				enemy->weapons_->SetIsAlive(0, i);
 				enemy->weapons_->SetPos(-100, -100, i);
 			}
-			enemy->SetInitializationHp(30);
+			enemy->SetInitializationHp(10);
 			enemy->SetIsAlive(1);
 			enemy->SetPos(400, 100);
 			enemy->SetResurrections(3);
@@ -74,7 +74,7 @@ void GameScene_Class::Update(char* keys, char* preKeys)
 				float distY_b = float(player->weapons_->GetPosY(i) - enemy->GetPosY());
 				float dist_b = sqrtf((distX_b * distX_b) + (distY_b * distY_b));
 				float radius_b = enemy->GetRadius() + player->weapons_->GetRadius();
-				if (dist_b <= radius_b) {
+				if (dist_b <= radius_b && enemy->GetIsAlive() == 1) {
 
 					enemy->SetHp(-1);
 
@@ -226,7 +226,20 @@ void GameScene_Class::Update(char* keys, char* preKeys)
 		if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0) {
 
 			scene_ = Title;
-
+			player->SetPos(500, 400);
+			player->SetIsAlive(1);
+			player->SetInitializationHp(50);
+			for (int i = 0; i < max_bullet; i++) {
+				player->weapons_->SetIsAlive(0, i);
+				player->weapons_->SetPos(-100, -100, i);
+				enemy->weapons_->SetIsAlive(0, i);
+				enemy->weapons_->SetPos(-100, -100, i);
+			}
+			enemy->SetInitializationHp(10);
+			enemy->SetIsAlive(1);
+			enemy->SetPos(400, 100);
+			enemy->SetResurrections(3);
+			enemy->SetRespawn(120);
 		}
 
 		break;
@@ -235,16 +248,26 @@ void GameScene_Class::Update(char* keys, char* preKeys)
 		if (keys[DIK_SPACE] && preKeys[DIK_SPACE] == 0) {
 
 			scene_ = Title;
-
+			player->SetPos(500, 400);
+			player->SetIsAlive(1);
+			player->SetInitializationHp(50);
+			for (int i = 0; i < max_bullet; i++) {
+				player->weapons_->SetIsAlive(0, i);
+				player->weapons_->SetPos(-100, -100, i);
+				enemy->weapons_->SetIsAlive(0, i);
+				enemy->weapons_->SetPos(-100, -100, i);
+			}
+			enemy->SetInitializationHp(10);
+			enemy->SetIsAlive(1);
+			enemy->SetPos(400, 100);
+			enemy->SetResurrections(3);
+			enemy->SetRespawn(120);
 		}
 
 
 
 		break;
 	}
-
-
-
 }
 //描画
 void GameScene_Class::Draw()
@@ -254,8 +277,7 @@ void GameScene_Class::Draw()
 	{
 	case Title:
 		//タイトル
-		Novice::DrawBox(0, 0, 1280, 720, 0.0f, WHITE, kFillModeSolid);
-
+		Novice::DrawSprite(0, 0, image_title, 1, 1, 0.0f, WHITE);
 		break;
 	case Game:
 		//プレイヤー
@@ -263,20 +285,15 @@ void GameScene_Class::Draw()
 		//敵
 		enemy->Draw();
 
-
-		Novice::ScreenPrintf(10, 10, "P_HP %d", player->GetHp());
-		Novice::ScreenPrintf(200, 10, "E_HP %d", enemy->GetHp());
-
 		break;
 	case GameOver:
 		//ゲームオーバー画面
-		Novice::DrawBox(0, 0, 1280, 720, 0.0f, RED, kFillModeSolid);
-
+		Novice::DrawSprite(0, 0, image_over, 1, 1, 0.0f, WHITE);
 		break;
 	case GameClear:
 		//ゲームクリア画面
-		Novice::DrawBox(0, 0, 1280, 720, 0.0f, GREEN, kFillModeSolid);
 
+		Novice::DrawSprite(0, 0, image_clear, 1, 1, 0.0f, WHITE);
 		break;
 	}
 

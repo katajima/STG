@@ -22,12 +22,12 @@ Weapons_Class::~Weapons_Class()
 {
 }
 
-void Weapons_Class::SetSpeed(float speedX, float speedY,int count)
+void Weapons_Class::SetSpeed(float speedX, float speedY, int count)
 {
-	
-		speed_[count].x = speedX;
-		speed_[count].y = speedY;
-	
+
+	speed_[count].x = speedX;
+	speed_[count].y = speedY;
+
 
 }
 
@@ -57,61 +57,61 @@ void Weapons_Class::SetReverseSpeedY(float speedY, int count)
 
 
 
-void Weapons_Class::SetIsAlive(int isAlive ,int count)
-{	
-		isAlive_[count] = isAlive;
+void Weapons_Class::SetIsAlive(int isAlive, int count)
+{
+	isAlive_[count] = isAlive;
 }
 
-void Weapons_Class::SetPos(float posX, float posY,int count)
+void Weapons_Class::SetPos(float posX, float posY, int count)
 {
 
-		pos_[count].x = posX;
-		pos_[count].y = posY;
+	pos_[count].x = posX;
+	pos_[count].y = posY;
 
 }
-
+//更新
 void Weapons_Class::Update(int count)
 {
 
 
 
-	
-		if (isAlive_[count] == 1) {
-			pos_[count].x += speed_[count].x;
-			pos_[count].y += speed_[count].y;
+	//
+	if (isAlive_[count] == 1) {
+		pos_[count].x += speed_[count].x;
+		pos_[count].y += speed_[count].y;
+		//反射する
+		if (pos_[count].x - radius_ <= 0 || pos_[count].x + radius_ >= 1280) {
 
-			if (pos_[count].x - radius_ <= 0 || pos_[count].x + radius_ >= 1280) {
-
-				speed_[count].x += 0.1f;
-				speed_[count].x *= -1;
-				if (pos_[count].x - radius_ <= 0) {
-					pos_[count].x = radius_;
-				}
-				if (pos_[count].x + radius_ >= 1280) {
-					pos_[count].x = 1280 -radius_;
-				}
+			speed_[count].x += 0.1f;
+			speed_[count].x *= -1;
+			if (pos_[count].x - radius_ <= 0) {
+				pos_[count].x = radius_;
 			}
-			if (pos_[count].y - radius_ <= 0 || pos_[count].y + radius_ >= 720) {
-
-				speed_[count].y += 0.1f;
-
-				speed_[count].y *= -1;
-
-				if (pos_[count].y - radius_ <= 0) {
-					pos_[count].y = radius_;
-				}
-				if (pos_[count].y + radius_ >= 720) {
-					pos_[count].y = 720 - radius_;
-				}
+			if (pos_[count].x + radius_ >= 1280) {
+				pos_[count].x = 1280 - radius_;
 			}
 		}
-	
-}
+		//反射する
+		if (pos_[count].y - radius_ <= 0 || pos_[count].y + radius_ >= 720) {
 
+			speed_[count].y += 0.1f;
+
+			speed_[count].y *= -1;
+
+			if (pos_[count].y - radius_ <= 0) {
+				pos_[count].y = radius_;
+			}
+			if (pos_[count].y + radius_ >= 720) {
+				pos_[count].y = 720 - radius_;
+			}
+		}
+	}
+
+}
+//描画
 void Weapons_Class::Draw()
 {
 	for (int i = 0; i < max_bullet; i++) {
-		//Novice::DrawEllipse((int)pos_[i].x, (int)pos_[i].y, (int)radius_, (int)radius_, 0.0f, color_, kFillModeSolid);
 		Novice::DrawSprite((int)pos_[i].x - (int)radius_, (int)pos_[i].y - (int)radius_, image_bullet, 1, 1, 0.0f, color_);
 	}
 }

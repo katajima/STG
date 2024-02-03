@@ -40,5 +40,9 @@ public:
 		GameClear,
 	};
 
+	//画像
+	int image_title = Novice::LoadTexture("./image/Title.png");
+	int image_over = Novice::LoadTexture("./image/Over.png");
+	int image_clear = Novice::LoadTexture("./image/Clear.png");
 
 };

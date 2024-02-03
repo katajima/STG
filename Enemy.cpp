@@ -107,7 +107,7 @@ void Enemy_Class::Update()
 	count_bullet++;
 
 	for (int i = 0; i < max_bullet; i++) {
-		if (count_bullet >= 120) {
+		if (count_bullet >= 120 && isAlive_ == 1) {
 			if (weapons_->GetIsAlive(i) == 0) {
 				weapons_->SetIsAlive(1, i);
 				weapons_->SetPos(pos_.x, pos_.y, i);
@@ -132,8 +132,9 @@ void Enemy_Class::Update()
 		if (respawnCount_ <= 0) {
 
 			isAlive_ = 1;
-			hp_ = 30;
+			hp_ = 10;
 			resurrections_ -= 1;
+			respawnCount_ = 120;
 		}
 	}
 
@@ -142,10 +143,12 @@ void Enemy_Class::Update()
 void Enemy_Class::Draw()
 {
 
-	//Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)radius_, (int)radius_, 0.0f, WHITE, kFillModeSolid);
 	if (isAlive_ == 1) {
 		Novice::DrawSprite((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_, image_enemy, 1, 1, 0.0f, WHITE);
+
+
+		Novice::DrawBox((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_ - 20,5 * hp_, 10,0.0f, 0xFFFF00FF, kFillModeSolid);
 	}
 	weapons_->Draw();
-
 }
+
