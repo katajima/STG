@@ -13,7 +13,7 @@ GameScene_Class::GameScene_Class()
 GameScene_Class::~GameScene_Class()
 {
 }
-
+//更新
 void GameScene_Class::Update(char* keys, char* preKeys)
 {
 
@@ -41,6 +41,9 @@ void GameScene_Class::Update(char* keys, char* preKeys)
 			enemy->SetInitializationHp(30);
 			enemy->SetIsAlive(1);
 			enemy->SetPos(400, 100);
+			enemy->SetResurrections(3);
+			enemy->SetRespawn(120);
+
 		}
 
 
@@ -210,7 +213,7 @@ void GameScene_Class::Update(char* keys, char* preKeys)
 				enemy->SetIsAlive(0);
 
 			}
-			if (enemy->GetIsAlive() == 0) {
+			if (enemy->GetIsAlive() == 0 && enemy->GetResurrections() <= 0) {
 				scene_ = GameClear;
 
 			}
@@ -243,20 +246,21 @@ void GameScene_Class::Update(char* keys, char* preKeys)
 
 
 }
-
+//描画
 void GameScene_Class::Draw()
 {
 
 	switch (scene_)
 	{
 	case Title:
-
+		//タイトル
 		Novice::DrawBox(0, 0, 1280, 720, 0.0f, WHITE, kFillModeSolid);
 
 		break;
 	case Game:
-
+		//プレイヤー
 		player->Draw();
+		//敵
 		enemy->Draw();
 
 
@@ -265,12 +269,12 @@ void GameScene_Class::Draw()
 
 		break;
 	case GameOver:
-
+		//ゲームオーバー画面
 		Novice::DrawBox(0, 0, 1280, 720, 0.0f, RED, kFillModeSolid);
 
 		break;
 	case GameClear:
-
+		//ゲームクリア画面
 		Novice::DrawBox(0, 0, 1280, 720, 0.0f, GREEN, kFillModeSolid);
 
 		break;

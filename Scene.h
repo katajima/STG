@@ -6,10 +6,11 @@
 class GameScene_Class
 {
 public:
-
+	//プレイヤー包含
 	Player_Class* player = new Player_Class(500, 500, 5, 5, 20, 0, 1);
-
+	//敵包含
 	Enemy_Class* enemy = new Enemy_Class(100, 200, 5, 0, 30, 0, 1);
+
 
 	GameScene_Class();
 	~GameScene_Class();
@@ -30,7 +31,7 @@ public:
 
 	//変数
 	int scene_;
-
+	//シーン
 	enum Scene
 	{
 		Title,

@@ -8,6 +8,7 @@ public:
 	Weapons_Class(float posX, float posY, float speedX, float speedY, float radius,int isAlive,unsigned int color);
 	~Weapons_Class();
 
+	//ゲッター
 	float GetPosX(int c) { return pos_[c].x; }
 	float GetPosY(int c) { return pos_[c].y; }
 	VectorFloat2 GetSpeed(int c) { return speed_[c]; }
@@ -15,7 +16,7 @@ public:
 	int GetIsAlive() { return isAlive_[max_bullet]; }
 	int GetIsAlive(int c) { return isAlive_[c]; }
 
-
+	//セッター
 	void SetSpeed(float speedX, float speedY,int count);
 
 	void SetSpeedR(float speedX, float speedY, int count);
@@ -27,9 +28,9 @@ public:
 	void SetIsAlive(int isAlive, int count);
 
 	void SetPos(float posX, float posY,int count);
-
+	//更新
 	void Update(int count);
-
+	//描画
 	void Draw();
 
 private:

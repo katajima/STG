@@ -17,7 +17,9 @@ Enemy_Class::Enemy_Class(float posX, float posY, float speedX, float speedY, flo
 
 	isAlive_ = isAlive;
 
+	respawnCount_ = 120;
 
+	resurrections_ = 3;
 }
 
 Enemy_Class::~Enemy_Class()
@@ -36,21 +38,21 @@ void Enemy_Class::SetHp(int hp)
 	}
 
 }
-
+//HP初期化
 void Enemy_Class::SetInitializationHp(int hp)
 {
 
 	hp_ = hp;
 
 }
-
+//フラグ設定
 void Enemy_Class::SetIsAlive(int isAlive)
 {
 
 	isAlive_ = isAlive;
 
 }
-
+//位置を設定
 void Enemy_Class::SetPos(float posX, float posY)
 {
 
@@ -59,6 +61,20 @@ void Enemy_Class::SetPos(float posX, float posY)
 
 }
 
+void Enemy_Class::SetRespawn(int respawn)
+{
+
+	respawnCount_ = respawn;
+
+}
+void Enemy_Class::SetResurrections(int resurrections)
+{
+
+	resurrections_ = resurrections;
+
+}
+
+//更新
 void Enemy_Class::Update()
 {
 
@@ -111,13 +127,25 @@ void Enemy_Class::Update()
 	}
 
 
-}
+	if(isAlive_ == 0 && resurrections_ > 0){
+		respawnCount_--;
+		if (respawnCount_ <= 0) {
 
+			isAlive_ = 1;
+			hp_ = 30;
+			resurrections_ -= 1;
+		}
+	}
+
+}
+//描画
 void Enemy_Class::Draw()
 {
 
 	//Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)radius_, (int)radius_, 0.0f, WHITE, kFillModeSolid);
-	Novice::DrawSprite((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_, image_enemy, 1, 1, 0.0f, WHITE);
+	if (isAlive_ == 1) {
+		Novice::DrawSprite((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_, image_enemy, 1, 1, 0.0f, WHITE);
+	}
 	weapons_->Draw();
 
 }
