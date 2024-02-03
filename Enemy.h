@@ -42,5 +42,6 @@ private:
 	//　
 	int count_bullet;
 
+	int image_enemy = Novice::LoadTexture("./image/enemy.png");
 };
 

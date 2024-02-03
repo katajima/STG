@@ -111,14 +111,7 @@ void Weapons_Class::Update(int count)
 void Weapons_Class::Draw()
 {
 	for (int i = 0; i < max_bullet; i++) {
-		Novice::DrawEllipse((int)pos_[i].x, (int)pos_[i].y, (int)radius_, (int)radius_, 0.0f, color_, kFillModeSolid);
-	}
-
-
-	for (int i = 0; i < max_bullet; i++) {
-	
-		//Novice::ScreenPrintf(10, 30 + (i * 20), "posX%f posY%5.1f", pos_[i].x, pos_[i].y);
-		//Novice::ScreenPrintf(300, 30 + (i * 20), "flag%d speed%3.1f",isAlive_[i],speed_[i].x);
-
+		//Novice::DrawEllipse((int)pos_[i].x, (int)pos_[i].y, (int)radius_, (int)radius_, 0.0f, color_, kFillModeSolid);
+		Novice::DrawSprite((int)pos_[i].x - (int)radius_, (int)pos_[i].y - (int)radius_, image_bullet, 1, 1, 0.0f, color_);
 	}
 }

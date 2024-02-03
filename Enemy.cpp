@@ -116,8 +116,8 @@ void Enemy_Class::Update()
 void Enemy_Class::Draw()
 {
 
-	Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)radius_, (int)radius_, 0.0f, WHITE, kFillModeSolid);
-
+	//Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)radius_, (int)radius_, 0.0f, WHITE, kFillModeSolid);
+	Novice::DrawSprite((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_, image_enemy, 1, 1, 0.0f, WHITE);
 	weapons_->Draw();
 
 }

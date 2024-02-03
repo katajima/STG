@@ -116,10 +116,9 @@ void Player_Class::SetIsAlive(int alive)
 void Player_Class::Draw()
 {
 
-	Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)radius_, (int)radius_, 0.0f, WHITE, kFillModeSolid);
-
-	//if (weapons_->GetIsAlive() == 1) {
+	//Novice::DrawEllipse((int)pos_.x, (int)pos_.y, (int)radius_, (int)radius_, 0.0f, WHITE, kFillModeSolid);
+	Novice::DrawSprite((int)pos_.x - (int)radius_, (int)pos_.y - (int)radius_, image_player, 1, 1, 0.0f, WHITE);
+	
 	weapons_->Draw();
-	//}
 
 }

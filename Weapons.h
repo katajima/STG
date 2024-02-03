@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include"Struct.h"
+#include"Novice.h"
 
 class Weapons_Class
 {
@@ -43,6 +44,8 @@ private:
 	int isAlive_[max_bullet];
 
 	unsigned int color_;
+
+	int image_bullet = Novice::LoadTexture("./image/bullet.png");
 };
 
 

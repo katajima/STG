@@ -43,5 +43,6 @@ private:
 
 	int isAlive_;
 
+	int image_player = Novice::LoadTexture("./image/player.png");
 };
 
